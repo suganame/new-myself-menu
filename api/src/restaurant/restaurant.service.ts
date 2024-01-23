@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestaurantEntity } from './entities/restaurant.entity';
 import { Repository } from 'typeorm';
@@ -30,14 +30,8 @@ export class RestaurantService {
     id: number,
     updateRestaurantDto: UpdateRestaurantDto,
   ): Promise<RestaurantEntity | Error> {
-    let reg = await this.restaurantRepository.findOneByOrFail({ id });
-
-    if (!reg) {
-      return new HttpException('Registro não encontrado', HttpStatus.NOT_FOUND);
-    }
     await this.restaurantRepository.update({ id }, updateRestaurantDto);
-    reg = await this.restaurantRepository.findOneByOrFail({ id });
-    return reg;
+    return await this.restaurantRepository.findOneByOrFail({ id });
   }
 
   async remove(id: number): Promise<RestaurantEntity | Error> {
