@@ -2,10 +2,6 @@ FROM mysql:latest
 
 WORKDIR /var/lib/mysql
 
-# COPY . /docker-entrypoint-initdb.d/
-
-# RUN "mysqld --default-authentication-plugin=mysql_native_password"
-RUN ls
 CMD ["mysqld", "--default-authentication-plugin=mysql_native_password"]
 
 EXPOSE 3306

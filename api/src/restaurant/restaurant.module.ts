@@ -1,11 +1,12 @@
+/* istanbul ignore file */
 import { Module } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
 import { RestaurantController } from './restaurant.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Restaurant } from './entities/restaurant.entity';
+import { RestaurantEntity } from './entities/restaurant.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Restaurant])],
+  imports: [TypeOrmModule.forFeature([RestaurantEntity])],
   controllers: [RestaurantController],
   providers: [RestaurantService],
   exports: [TypeOrmModule],
